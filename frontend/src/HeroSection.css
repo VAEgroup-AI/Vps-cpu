@@ -1,0 +1,85 @@
+
+
+/*
+	.hero-section
+	Sección principal de la landing page.
+	- Fondo con gradiente azul moderno
+	- Centrado vertical y horizontal
+	- Bordes redondeados y sombra para efecto de tarjeta
+*/
+.hero-section {
+	display           : flex;     /* Usa flexbox para centrar contenido */
+	flex-direction    : column;   /* Apila elementos verticalmente */
+	align-items       : center;   /* Centra horizontalmente */
+	justify-content   : center;   /* Centra verticalmente */
+	min-height        : 60vh;     /* Altura mínima para buena presencia visual */
+	text-align        : center;   /* Centra texto */
+	padding           : 2.5rem 0; /* Espaciado vertical */
+	background        : linear-gradient(135deg, 
+						#0077b6 0%, 
+						#00b4d8 100%); /* Gradiente azul */
+	border-radius     : 16px; /* Bordes redondeados */
+	box-shadow        : 0 4px 32px 0 
+						rgba(0, 119, 182, 0.10); /* Sombra suave */
+}
+
+
+/*
+	.hero-title
+	Título principal destacado.
+	- Tamaño grande y peso fuerte
+	- Color claro y sombra para contraste
+*/
+.hero-title {
+	font-size      : 2.8rem;     /* Muy grande */
+	font-weight    : 900;        /* Muy negrita */
+	color          : #f1faff; /* Azul muy claro */
+	margin-bottom  : 1.5rem;
+	margin-top     : 1rem;
+	line-height    : 1.1;
+	text-shadow    : 0 2px 12px rgba(0,0,0,0.18); /* Sombra para resaltar */
+	letter-spacing : 1px;
+}
+
+
+/*
+	.hero-subtitle
+	Subtítulo o descripción bajo el título principal.
+	- Color azul claro
+	- Máximo ancho para buena legibilidad
+*/
+.hero-subtitle {
+	color         : #caf0f8;
+	font-size     : 1.18rem;
+	max-width     : 520px;
+	margin-bottom : 2rem;
+	text-shadow   : 0 1px 8px rgba(0,0,0,0.10); /* Sombra sutil */
+}
+
+
+/*
+	.hero-button
+	Botón de acción principal.
+	- Gradiente azul, bordes redondeados y sombra
+	- Efecto hover con cambio de color y sombra
+*/
+.hero-button {
+	background   : linear-gradient(90deg, #00b4d8 0%, #48cae4 100%); /* Gradiente horizontal */
+	color        : #fff; /* Texto blanco */
+	/* padding: 0.9rem 2.2rem;  Espaciado opcional */
+	border-radius  : 2rem; /* Bordes muy redondeados */
+	font-size      : 1.1rem;
+	font-weight    : 700;
+	text-decoration: none;
+	border         : none;
+	box-shadow     : 0 2px 16px 0 rgba(0, 180, 216, 0.15); /* Sombra suave */
+	transition     : background 0.2s, box-shadow 0.2s, color 0.2s; /* Transiciones suaves */
+	cursor         : pointer;
+	letter-spacing : 0.5px;
+}
+.hero-button:hover {
+	background     	: linear-gradient(90deg, #48cae4 0%, #00b4d8 100%); /* Invierte el gradiente */
+	color           : #03045e; /* Azul oscuro al pasar el mouse */
+	box-shadow      : 0 4px 24px 0 rgba(0, 180, 216, 0.25); /* Sombra más fuerte */
+}
+

@@ -1,0 +1,79 @@
+
+
+/*
+	.navbar
+	Barra de navegación superior fija.
+	- Fondo azul oscuro
+	- Texto blanco
+	- Bordes superiores redondeados
+	- Centrado horizontal y vertical
+*/
+.navbar {
+	width           : 100%;
+	background      : #0a1833; /* Azul oscuro */
+	color           : #fff;    /* Texto blanco */
+	padding         : 1rem 0;
+	display         : flex;
+	justify-content : center;      /* Centra el contenido horizontalmente */
+	align-items     : center;      /* Centra verticalmente */
+	border-radius   : 8px 8px 0 0; /* Bordes superiores redondeados */
+}
+
+
+/*
+	.navbar-logo
+	Contenedor del logo y nombre de la app.
+	- Alinea logo e ícono horizontalmente
+	- Espaciado y fuente destacada
+*/
+.navbar-logo {
+	display     : flex;
+	align-items : center;
+	gap         : 0.5rem; /* Espacio entre logo y texto */
+	font-weight : bold;
+	font-size   : 1.2rem;
+}
+
+
+/*
+	.logo-img
+	Tamaño fijo para el logo de la barra de navegación
+*/
+.logo-img {
+	width  : 32px;
+	height : 32px;
+}
+
+
+/*
+	.navbar-menu
+	Menú de navegación principal.
+	- Elementos alineados horizontalmente
+	- Espaciado entre enlaces
+	- Sin viñetas ni márgenes por defecto
+*/
+.navbar-menu {
+	display      : flex;
+	gap          : 1.5rem;     /* Espacio entre enlaces */
+	list-style   : none;       /* Sin viñetas */
+	margin       : 0 0 0 2rem; /* Separación a la izquierda del logo */
+	padding      : 0;
+}
+
+
+/*
+	.navbar-menu li a
+	Estilo para los enlaces del menú de navegación.
+	- Texto blanco, sin subrayado
+	- Peso medio y transición de color al pasar el mouse
+*/
+.navbar-menu li a {
+	color           : #fff;
+	text-decoration : none;
+	font-weight     : 500;
+	transition      : color 0.2s;
+}
+.navbar-menu li a:hover {
+	color: #4fd1ff; /* Azul claro al pasar el mouse */
+}
+
