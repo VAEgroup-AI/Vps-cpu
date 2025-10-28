@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve Flask backend
+After=network.target
+
+[Service]
+User=linuxadmin
+Group=www-data
+WorkingDirectory=/home/linuxadmin/web/backend
+Environment="PATH=/home/linuxadmin/entorno/bin"
+ExecStart=/home/linuxadmin/entorno/bin/gunicorn --workers 3 --bind 0.0.0.0:5000 app:app
+
+[Install]
+WantedBy=multi-user.target
