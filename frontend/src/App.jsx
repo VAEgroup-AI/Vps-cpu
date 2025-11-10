@@ -6,12 +6,12 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 
 // Importa los componentes principales de la interfaz
+
 import Navbar from './Navbar';
 import HeroSection from './HeroSection';
-
-// Importa el componente que interactúa con el backend
 import BackendHello from './BackendHello';
-
+import Contacto from './Contacto';
+import img from './assets/en_construccion.jpeg';
 
 // Componente para la ruta de pruebas, incluye un contador y un enlace de regreso
 function Pruebas() {
@@ -27,7 +27,10 @@ function Pruebas() {
       
       {/* Sección principal de la zona de pruebas */}
       <div className="hero-section" style={{marginTop:'2rem', padding:'2.5rem 0'}}>
-        <h1 className="hero-title">Zona de Pruebas</h1>
+        <h1 className="hero-title">Explorando con vane</h1>
+
+        <img src={img} alt="En construcción" style={{ maxWidth: '400px', marginTop: '1rem', borderRadius: '8px' }} />
+        
         
         {/* Botón que incrementa el contador */}
         <div style={{ margin: '1.2rem 0' }}>
@@ -48,6 +51,12 @@ function Pruebas() {
     </div>
   );
 }
+
+
+
+
+
+
 
 // Componente principal de la aplicación, define las rutas y carga los componentes principales
 function App() {
@@ -92,6 +101,8 @@ function App() {
         {/* Ruta para la zona de pruebas */}
         <Route path="/pruebas" element={<Pruebas />} />
       
+        {/* Ruta para la página de contacto */}
+        <Route path="/contacto" element={<Contacto />} />
       </Routes>
     </Router>
   );

@@ -10,7 +10,7 @@ export default function HeroSection() {
         IA
       </h1>
       <p className="hero-subtitle">
-        Somos un equipo de ingenieros, analistas y project managers dedicados a impulsar la transformación digital de tu empresa. Combinamos estrategia, tecnología y creatividad para diseñar soluciones inteligentes.
+        Somos un equipo de ingenieros entusiastas, analistas y project managers dedicados a impulsar la transformación digital de tu empresa. Combinamos estrategia, tecnología y creatividad para diseñar soluciones inteligentes.
       </p>
       <a href="#contact" className="hero-button">Descubrí cómo podemos ayudarte</a>
     </section>
