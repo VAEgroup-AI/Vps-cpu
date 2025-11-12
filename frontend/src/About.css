@@ -1,0 +1,66 @@
+/* About Section Styles */
+
+.about-section {
+  padding: 3rem 0;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 16px;
+  margin: 2rem 0;
+  box-shadow: 0 4px 24px 0 rgba(0, 119, 182, 0.15);
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #48cae4;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 8px rgba(72, 202, 228, 0.3);
+  letter-spacing: 0.5px;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-description {
+  color: #ecf0f1;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  text-align: left;
+  margin: 0;
+  padding: 1.2rem;
+  background: rgba(52, 73, 94, 0.8);
+  border-radius: 12px;
+  border-left: 4px solid #48cae4;
+  box-shadow: 0 2px 12px 0 rgba(0, 119, 182, 0.1);
+}
+
+.about-description:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px 0 rgba(0, 119, 182, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .about-description {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+  
+  .about-container {
+    padding: 0 1rem;
+  }
+}

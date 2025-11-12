@@ -1,5 +1,10 @@
 
 
+/* Global styles */
+html {
+	scroll-behavior: smooth;
+}
+
 /*
 	body
 	Fondo general de la aplicación.
@@ -9,7 +14,7 @@
 	- Fuente sans-serif para todo el sitio
 */
 body {
-	background      : #f5f7fa; /* Gris claro */
+	background      : #2c3e50; /* Gris oscuro azulado */
 	margin          : 0;
 	min-height      : 100vh;
 	font-family     : Arial, Helvetica, sans-serif;
@@ -25,13 +30,34 @@ body {
 	- Flexbox para centrar y apilar contenido
 */
 .app-bg {
-	max-width       : 600px;     /* Limita el ancho máximo */
-	margin          : 3rem auto; /* Centra horizontalmente y da margen arriba/abajo */
-	background      : #fff;    /* Fondo blanco para destacar el contenido */
+	max-width       : 1200px;     /* Aumenta el ancho máximo para más contenido */
+	margin          : 2rem auto; /* Centra horizontalmente y da margen arriba/abajo */
+	background      : #34495e;    /* Fondo gris oscuro azulado para destacar el contenido */
 	border-radius   : 12px;      /* Bordes redondeados */
 	box-shadow      : 0 2px 16px 0 rgba(80, 200, 255, 0.08); /* Sombra suave */
 	padding         : 2rem;
 	display         : flex;
 	flex-direction  : column;
 	align-items     : center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.app-bg {
+		max-width: 95%;
+		margin: 1rem auto;
+		padding: 1rem;
+		border-radius: 8px;
+	}
+}
+
+@media (max-width: 480px) {
+	body {
+		font-size: 14px;
+	}
+	
+	.app-bg {
+		margin: 0.5rem auto;
+		padding: 0.8rem;
+	}
 }

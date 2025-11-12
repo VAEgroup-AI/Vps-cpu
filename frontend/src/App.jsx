@@ -6,9 +6,13 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useState } from 'react';
 
 // Importa los componentes principales de la interfaz
-
 import Navbar from './Navbar';
 import HeroSection from './HeroSection';
+import About from './About';
+import MissionVision from './MissionVision';
+import Services from './Services';
+import Manifesto from './Manifesto';
+import Team from './Team';
 import BackendHello from './BackendHello';
 import Contacto from './Contacto';
 import img from './assets/en_construccion.jpeg';
@@ -75,6 +79,21 @@ function App() {
             
             {/* Sección principal de la landing */}
             <HeroSection />
+            
+            {/* Sección Sobre Nosotros */}
+            <About />
+            
+            {/* Sección Misión, Visión y Valores */}
+            <MissionVision />
+            
+            {/* Sección de Servicios */}
+            <Services />
+            
+            {/* Manifiesto */}
+            <Manifesto />
+            
+            {/* Sección del Equipo */}
+            <Team />
             
             {/* Contenedor con fondo y botón para ir a la zona de pruebas */}
             <div style={{marginTop:'2rem', textAlign:'center'}}>
