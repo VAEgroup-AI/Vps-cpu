@@ -174,3 +174,160 @@ Con esto, el backend Flask quedará funcionando como servicio y se iniciará aut
 - Si ves error 500 en el frontend, revisa los permisos y los logs de Nginx.
 - Si ambos subdominios muestran el backend, revisa los server_name en los archivos de configuración.
 - Usa nip.io para pruebas rápidas de subdominios apuntando a tu IP pública.
+
+
+# Ga
+Para habilitar el puerto 443 (HTTPS) en el servidor, necesitamos realizar varios pasos. Te ayudo a configurarlo:
+
+```bash
+sudo ufw status
+
+inuxadmin@vm-linux01:~$ sudo ufw status
+Status: active
+
+To Action From
+
+80/tcp ALLOW Anywhere
+22/tcp ALLOW Anywhere
+80/tcp (v6) ALLOW Anywhere (v6)
+22/tcp (v6) ALLOW Anywhere (v6)
+```
+
+erfecto, veo que el firewall está activo y solo tiene habilitados los puertos 80 (HTTP) y 22 (SSH). Para habilitar HTTPS correctamente, necesitamos:
+
+Abrir el puerto 443 en el firewall
+Configurar SSL en nginx
+Obtener certificados SSL
+
+- Empecemos:
+
+```bash
+sudo ufw allow 443/tcp
+```
+
+1. Abrir el puerto 443 en el firewall
+
+sudo ufw allow 443/tcp
+sudo ufw status
+
+2. Instalar Certbot (Let's Encrypt) para certificados SSL gratuitos
+
+sudo apt update
+sudo apt install certbot python3-certbot-nginx
+
+3. Verificar configuración actual de nginx
+Leer nginx-frontend.conf
+
+Leer nginx-backend.conf
+
+4. Obtener certificados SSL con Certbot
+Opción A: Automática (recomendada)
+
+```bash
+sudo certbot --nginx -d va.vae-ai-consulting.com -d vae.vae-ai-consulting.com
+```
+
+Opción B: Manual
+
+sudo certbot certonly --nginx -d va.vae-ai-consulting.com -d vae.vae-ai-consulting.com
+
+5. Actualizar configuraciones de nginx para HTTPS
+Necesitamos modificar ambos archivos de configuración:
+
+Para el frontend (nginx-frontend.conf):
+
+```sh
+# Redirigir HTTP a HTTPS
+server {
+    listen 80;
+    server_name va.vae-ai-consulting.com;
+    return 301 https://$server_name$request_uri;
+}
+
+# Configuración HTTPS para frontend
+server {
+    listen 443 ssl http2;
+    server_name va.vae-ai-consulting.com;
+    
+    # Certificados SSL
+    ssl_certificate /etc/letsencrypt/live/va.vae-ai-consulting.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/va.vae-ai-consulting.com/privkey.pem;
+    
+    # Configuración SSL segura
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    
+    root /home/linuxadmin/web/frontend/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+Para el backend (nginx-backend.conf):
+
+```sh
+# Redirigir HTTP a HTTPS
+server {
+    listen 80;
+    server_name vae.vae-ai-consulting.com;
+    return 301 https://$server_name$request_uri;
+}
+
+# Configuración HTTPS para backend
+server {
+    listen 443 ssl http2;
+    server_name vae.vae-ai-consulting.com;
+    
+    # Certificados SSL
+    ssl_certificate /etc/letsencrypt/live/vae.vae-ai-consulting.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/vae.vae-ai-consulting.com/privkey.pem;
+    
+    # Configuración SSL segura
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers HIGH:!aNULL:!MD5;
+    ssl_prefer_server_ciphers on;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+    
+    location / {
+        proxy_pass http://127.0.0.1:5000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_ssl_server_name on;
+    }
+}
+```
+
+6. Verificar y recargar nginx
+
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+7. Configurar renovación automática de certificados
+
+sudo crontab -e
+
+Agregar esta línea:
+
+0 12 * * * /usr/bin/certbot renew --quiet
+
+8. Verificar que todo funcione
+
+# Verificar puertos abiertos
+sudo ufw status
+sudo netstat -tulnp | grep :443
+
+# Probar HTTPS
+curl -I https://va.vae-ai-consulting.com
+curl -I https://vae.vae-ai-consulting.com
+
